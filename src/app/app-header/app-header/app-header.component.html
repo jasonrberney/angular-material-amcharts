@@ -2,6 +2,14 @@
     <mat-toolbar color="primary">
         <mat-toolbar-row>
             <span>Custom Toolbar</span>
+            <mat-form-field>
+                <mat-label>Favorite food</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{food.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
         </mat-toolbar-row>
     </mat-toolbar>
 </div>
