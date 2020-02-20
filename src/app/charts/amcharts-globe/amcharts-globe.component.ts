@@ -13,6 +13,10 @@ am4core.useTheme(am4themes_animated);
 })
 export class AmchartsGlobeComponent implements OnInit {
   private chart: am4maps.MapChart;
+  countryName: string = '';
+  updateCountry(input: string) {
+    this.countryName = input;
+  }
 
   constructor(private zone: NgZone) {}
 
@@ -59,6 +63,17 @@ export class AmchartsGlobeComponent implements OnInit {
       chart.backgroundSeries.mapPolygons.template.polygon.fillOpacity = 0.1;
       chart.backgroundSeries.mapPolygons.template.polygon.fill = am4core.color("#ffffff");
       
+      // Create click (hit) functionality
+      polygonTemplate.events.on("hit", (ev) => {
+        // zoom to an object
+        ev.target.series.chart.zoomToMapObject(ev.target);
+       
+        const ctx = ev.target.dataItem.dataContext as any;
+        // get object info
+        console.log(ctx.name);
+        this.updateCountry(ctx.name);
+      });
+
       // Create hover state and set alternative fill color
       let hs = polygonTemplate.states.create("hover");
       hs.properties.fill = chart.colors.getIndex(0).brighten(-0.5);
