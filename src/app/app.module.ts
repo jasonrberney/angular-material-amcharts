@@ -11,13 +11,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppHeaderComponent } from './app-header/app-header/app-header.component';
 import { AmchartsGlobeComponent } from './charts/amcharts-globe/amcharts-globe.component';
 import { AmchartsXychartComponent } from './charts/amcharts-xychart/amcharts-xychart/amcharts-xychart.component';
+import { CountryDisplayComponent } from './country-display/country-display/country-display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppHeaderComponent,
     AmchartsGlobeComponent,
-    AmchartsXychartComponent
+    AmchartsXychartComponent,
+    CountryDisplayComponent
   ],
   imports: [
     BrowserModule,

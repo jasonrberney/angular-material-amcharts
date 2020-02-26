@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from "@angular/core";
+import { Component, OnInit, NgZone, Output, EventEmitter } from "@angular/core";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
@@ -13,12 +13,13 @@ am4core.useTheme(am4themes_animated);
 })
 export class AmchartsGlobeComponent implements OnInit {
   private chart: am4maps.MapChart;
-  countryName: string = '';
-  updateCountry(input: string) {
-    this.countryName = input;
+  country: string = 'China';
+
+  updateCountryText(input: string) {
+    this.country = input;
   }
 
-  constructor(private zone: NgZone) {}
+  constructor(private zone: NgZone) { }
 
   ngOnInit() {
   }
@@ -71,7 +72,7 @@ export class AmchartsGlobeComponent implements OnInit {
         const ctx = ev.target.dataItem.dataContext as any;
         // get object info
         console.log(ctx.name);
-        this.updateCountry(ctx.name);
+        this.zone.run(() => this.updateCountryText(ctx.name));
       });
 
       // Create hover state and set alternative fill color
