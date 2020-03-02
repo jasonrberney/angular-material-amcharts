@@ -1,13 +1,13 @@
 <div class="app-header-parent-div">
     <mat-toolbar color="secondary">
-        <mat-toolbar-row>
-            <span>Custom Toolbar</span>
+        <mat-toolbar-row class="toolbar-row">
+            <span>Death Star</span>
             <span class="example-spacer"></span>
             <mat-form-field>
-                <mat-label>Favorite food</mat-label>
-                <mat-select>
-                  <mat-option *ngFor="let food of foods" [value]="food.value">
-                    {{food.viewValue}}
+                <mat-label>Country</mat-label>
+                <mat-select (selectionChange)="onCountrySelectionChange($event.value)">
+                  <mat-option *ngFor="let country of countries" [value]="country.value">
+                    {{country.viewValue}}
                   </mat-option>
                 </mat-select>
             </mat-form-field>

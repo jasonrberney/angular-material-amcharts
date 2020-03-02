@@ -1,6 +1,6 @@
 <div>
-  <app-header></app-header>
-  <app-amcharts-globe></app-amcharts-globe>
+  <app-header (countryChange)="onCountryChanged($event)"></app-header>
+  <app-amcharts-globe [countryName]="countryName"></app-amcharts-globe>
 </div>
 
 <router-outlet></router-outlet>

@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, NgZone, Input, Output, EventEmitter } from "@angular/core";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
@@ -13,10 +13,13 @@ am4core.useTheme(am4themes_animated);
 })
 export class AmchartsGlobeComponent implements OnInit {
   private chart: am4maps.MapChart;
-  country: string = 'China';
+
+  @Input() countryName;
+
+  //country: string = 'China';
 
   updateCountryText(input: string) {
-    this.country = input;
+    this.countryName = input;
   }
 
   constructor(private zone: NgZone) { }

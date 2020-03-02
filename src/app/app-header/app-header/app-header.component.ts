@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
-interface Food {
+interface Country {
   value: string;
   viewValue: string;
 }
@@ -12,16 +12,23 @@ interface Food {
 })
 
 export class AppHeaderComponent implements OnInit {
+  //@Input() countryChange;
+  @Output() countryChange = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
+  onCountrySelectionChange(value) {
+    console.log(value);
+    this.countryChange.emit(value);
+  }
+
+  countries: Country[] = [
+    {value: 'united-states', viewValue: 'United States'},
+    {value: 'spain', viewValue: 'Spain'},
+    {value: 'south-africa', viewValue: 'South Africa'}
   ]
 
 }

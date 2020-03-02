@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-material-amcharts';
+
+  countryName: string = 'China';
+
+  onCountryChanged(country) {
+    console.log(country);
+    this.countryName = country;
+  }
 }
