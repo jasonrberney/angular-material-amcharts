@@ -1,6 +1,8 @@
 <div class="globe-parent-div">
     <div id="chartdiv"></div>
     <!-- <div class="country-identity" [textContent]="countryName"></div> -->
-    <app-country-display [countryName]="countryName"></app-country-display>
+    <ng-container *ngIf="eventStream$ | async as countryData">
+        <app-country-display [countryName]="countryData.selectedCountry"></app-country-display>
+    </ng-container>
     <button (click)="updateCountryText('FINALLY')">Click Me</button>
 </div>

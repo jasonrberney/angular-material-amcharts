@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 
 interface Country {
   value: string;
@@ -12,10 +13,12 @@ interface Country {
 })
 
 export class AppHeaderComponent implements OnInit {
-  //@Input() countryChange;
+
   @Output() countryChange = new EventEmitter();
 
   constructor() { }
+
+  countryNamesArr: Array<string> = am4geodata_worldLow.features.map((feature: any) => feature.properties.name).sort();
 
   ngOnInit() {
   }

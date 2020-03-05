@@ -14,12 +14,18 @@ am4core.useTheme(am4themes_animated);
 export class AmchartsGlobeComponent implements OnInit {
   private chart: am4maps.MapChart;
 
-  @Input() countryName;
+  @Output() countryClick = new EventEmitter();
+  @Input() eventStream$;
 
-  //country: string = 'China';
+  ngOnChanges(changes: AmchartsGlobeComponent) {
+    console.log(changes.eventStream$.selectedCountry) ;
+    // You can also use categoryId.previousValue and 
+    // categoryId.firstChange for comparing old and new values
+
+  }
 
   updateCountryText(input: string) {
-    this.countryName = input;
+    this.countryClick.emit(input);
   }
 
   constructor(private zone: NgZone) { }
@@ -33,7 +39,7 @@ export class AmchartsGlobeComponent implements OnInit {
 
       // Set map definition
       chart.geodata = am4geodata_worldLow;
-      
+            
       // Set projection
       chart.projection = new am4maps.projections.Orthographic();
       chart.panBehavior = "rotateLongLat";

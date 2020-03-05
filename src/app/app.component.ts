@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,20 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'angular-material-amcharts';
 
-  countryName: string = 'China';
-
   onCountryChanged(country) {
     console.log(country);
-    this.countryName = country;
+    this.update(country, 'selectCountry');
+  }
+
+  // Observable - data management
+  private state = new BehaviorSubject({
+    selectedCountry: 'Spain'
+  });
+  public eventStream$ = this.state.asObservable()
+
+  update(value, command) {
+    let update = this.state.value;
+    if (command === 'selectCountry') update.selectedCountry = value;
+    this.state.next(update);
   }
 }
