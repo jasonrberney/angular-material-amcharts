@@ -1,5 +1,7 @@
 <div>
-  <app-header (countryChange)="onCountryChanged($event)"></app-header>
+  <app-header 
+    (countryChange)="onCountryChanged($event)"
+  ></app-header>
   <app-amcharts-globe
     [eventStream$]="eventStream$"
     (countryClick)="onCountryChanged($event)"

@@ -13,6 +13,8 @@ import { AmchartsGlobeComponent } from './charts/amcharts-globe/amcharts-globe.c
 import { AmchartsXychartComponent } from './charts/amcharts-xychart/amcharts-xychart/amcharts-xychart.component';
 import { CountryDisplayComponent } from './country-display/country-display/country-display.component';
 
+import { CountryService } from './services/country.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,9 @@ import { CountryDisplayComponent } from './country-display/country-display/count
     MatSelectModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [
+    CountryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

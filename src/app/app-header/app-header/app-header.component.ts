@@ -9,19 +9,23 @@ interface Country {
 @Component({
   selector: 'app-header',
   templateUrl: './app-header.component.html',
-  styleUrls: ['./app-header.component.scss']
+  styleUrls: ['./app-header.component.scss'],
+  providers: []
 })
 
 export class AppHeaderComponent implements OnInit {
 
   @Output() countryChange = new EventEmitter();
 
-  constructor() { }
+  constructor() {
 
-  countryNamesArr: Array<string> = am4geodata_worldLow.features.map((feature: any) => feature.properties.name).sort();
+  }
 
   ngOnInit() {
+
   }
+
+  countryNamesArr: Array<string> = am4geodata_worldLow.features.map((feature: any) => feature.properties.name).sort();
 
   onCountrySelectionChange(value) {
     console.log(value);
