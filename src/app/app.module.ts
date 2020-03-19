@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -14,6 +15,7 @@ import { AmchartsXychartComponent } from './charts/amcharts-xychart/amcharts-xyc
 import { CountryDisplayComponent } from './country-display/country-display/country-display.component';
 
 import { CountryService } from './services/country.service';
+import { CitiesService } from './services/cities.service';
 
 @NgModule({
   declarations: [
@@ -30,10 +32,12 @@ import { CountryService } from './services/country.service';
     MatToolbarModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [
-    CountryService
+    CountryService,
+    CitiesService
   ],
   bootstrap: [AppComponent]
 })

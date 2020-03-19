@@ -4,6 +4,8 @@ import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
+import { CitiesService, City } from '../../services/cities.service';
+
 am4core.useTheme(am4themes_animated);
 
 @Component({
@@ -13,6 +15,8 @@ am4core.useTheme(am4themes_animated);
 })
 export class AmchartsGlobeComponent implements OnInit {
   private chart: am4maps.MapChart;
+
+  locations: City[];
 
   @Output() countryClick = new EventEmitter();
   @Input() eventStream$;
@@ -28,9 +32,17 @@ export class AmchartsGlobeComponent implements OnInit {
     this.countryClick.emit(input);
   }
 
-  constructor(private zone: NgZone) { }
+  constructor(private zone: NgZone, private citiesService: CitiesService) { }
 
   ngOnInit() {
+    this.getLocations()
+  }
+
+  getLocations() {
+    this.citiesService.get()
+      .subscribe(data => {
+        this.locations = data
+      });
   }
 
   ngAfterViewInit() {

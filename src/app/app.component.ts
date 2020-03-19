@@ -20,7 +20,6 @@ export class AppComponent {
   title = 'angular-material-amcharts';
 
   onCountryChanged(country) {
-    console.log(country);
     this.update(country, 'selectCountry');
 
     // service
