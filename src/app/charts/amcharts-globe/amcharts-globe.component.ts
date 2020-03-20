@@ -35,15 +35,15 @@ export class AmchartsGlobeComponent implements OnInit {
   constructor(private zone: NgZone, private citiesService: CitiesService) { }
 
   ngOnInit() {
-    this.getLocations()
+    //this.getLocations()
   }
 
-  getLocations() {
-    this.citiesService.get()
-      .subscribe(data => {
-        this.locations = data
-      });
-  }
+  // getLocations() {
+  //   this.citiesService.get()
+  //     .subscribe(data => {
+  //       this.locations = data
+  //     });
+  // }
 
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
@@ -102,7 +102,13 @@ export class AmchartsGlobeComponent implements OnInit {
       
       let animation;
       setTimeout(function(){
-        animation = chart.animate({property:"deltaLongitude", to:100000}, 20000000);
+        //animation = chart.animate({property:"deltaLongitude", to:100000}, 20000000);
+
+        loadLines([
+          { "latitude": 48.856614, "longitude": 2.352222 },
+          { "latitude": 40.712775, "longitude": -74.005973 },
+          { "latitude": 49.282729, "longitude": -123.120738 }
+        ]);
       }, 3000)
       
       chart.seriesContainer.events.on("down", function(){
@@ -110,6 +116,30 @@ export class AmchartsGlobeComponent implements OnInit {
           animation.stop();
         }
       })
+
+      this.zone.run(() => this.citiesService.get()
+        .subscribe(data => {
+          this.locations = data
+          loadLines(data);
+        }));
+      
+      let lineSeries = chart.series.push(new am4maps.MapLineSeries());
+      lineSeries.mapLines.template.strokeWidth = 4;
+      lineSeries.mapLines.template.stroke = am4core.color("#e03e96");
+      lineSeries.mapLines.template.nonScalingStroke = true;
+
+      let line = lineSeries.mapLines.create();
+      line.id = "myline";
+      line.setClassName();
+
+      const loadLines = (geoLines) => {
+        if (line.multiGeoLine) {
+          line.multiGeoLine = [[...geoLines, ...line.multiGeoLine[0]]];
+        }
+        else {
+          line.multiGeoLine = [geoLines];
+        }
+      }
     });
   }
 
