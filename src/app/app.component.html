@@ -2,10 +2,11 @@
   <app-header 
     (countryChange)="onCountryChanged($event)"
   ></app-header>
-  <app-amcharts-globe
+  <!-- <app-amcharts-globe
     [eventStream$]="eventStream$"
     (countryClick)="onCountryChanged($event)"
-  ></app-amcharts-globe>
+  ></app-amcharts-globe> -->
+  <app-amcharts-map-miller></app-amcharts-map-miller>
 </div>
 
 <router-outlet></router-outlet>

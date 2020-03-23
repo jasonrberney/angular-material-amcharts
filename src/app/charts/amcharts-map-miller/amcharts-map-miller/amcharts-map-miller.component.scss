@@ -1,0 +1,33 @@
+
+#chartdiv {
+    width: 100%;
+    height: 400px;
+  }
+  
+  .amcharts-myline path {
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    stroke-dasharray: 500%;
+    stroke-dasharray: 0; /* fixes IE prob */
+    stroke-dashoffset: 0; /* fixes IE prob */
+    -webkit-animation: am-draw 40s;
+    animation: am-draw 40s;
+    //animation-duration: 40s;
+  }
+  @-webkit-keyframes am-draw {
+    0% {
+      stroke-dashoffset: 500%;
+    }
+    100% {
+      stroke-dashoffset: 0%;
+    }
+  }
+  @keyframes am-draw {
+    0% {
+      stroke-dashoffset: 500%;
+    }
+    100% {
+      stroke-dashoffset: 0%;
+    }
+  }
+  

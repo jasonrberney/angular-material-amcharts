@@ -16,6 +16,7 @@ import { CountryDisplayComponent } from './country-display/country-display/count
 
 import { CountryService } from './services/country.service';
 import { CitiesService } from './services/cities.service';
+import { AmchartsMapMillerComponent } from './charts/amcharts-map-miller/amcharts-map-miller/amcharts-map-miller.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CitiesService } from './services/cities.service';
     AppHeaderComponent,
     AmchartsGlobeComponent,
     AmchartsXychartComponent,
-    CountryDisplayComponent
+    CountryDisplayComponent,
+    AmchartsMapMillerComponent
   ],
   imports: [
     BrowserModule,
