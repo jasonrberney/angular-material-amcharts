@@ -33,4 +33,6 @@ export class CitiesService {
 export interface City {
     name: string;
     coordinates: [string, string];
+    latitude: string;
+    longitude: string;
 }
